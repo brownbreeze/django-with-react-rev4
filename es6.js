@@ -1,9 +1,20 @@
-const tom ={
-    ["score"+"1"]:10,
-}
-console.log(tom);
+const tom = {
+    name: 'Tom',
+    age: 10
+};
 
-let [name] = ['tom', 10, 'seoul'];
+const {name, age, height} = tom;
+
 console.log(name);
-let [,age,] = ['tom', 10, 'seoul'];
 console.log(age);
+console.log(height);
+
+const print_person1 = (person) =>{
+    console.log(person.name);
+};
+const print_person2 = ({name}) =>{
+    console.log(name);
+};
+
+print_person1(tom);
+print_person2(tom);
