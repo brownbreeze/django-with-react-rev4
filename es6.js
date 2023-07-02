@@ -1,11 +1,17 @@
-let tom = {
-    name : "Tom",
-    age : 10
+function fn1(x, y) {
+    return x+y;
+
 };
 
-let steve = {
-    ...tom,
-    name : "Steve"
-}
-console.log(tom);
-console.log(steve);
+// X 
+const fn2 = function() {
+    return x+y;
+
+};
+
+// 주로 
+const fn3 = () => (x + y);
+; 
+
+// fn3 변형도 오케이
+const fn4 = x => x + 10;
