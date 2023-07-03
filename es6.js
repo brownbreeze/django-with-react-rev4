@@ -1,11 +1,10 @@
 const fs = require('fs');
+const fsPromises = fs.promises; 
 
-fs.readdir('.', function(err, files){
-    if (err){
-        console.log('error finding files '+ err);
-    }else{
+fsPromises.readdir('.')
+    .then(files => {
         console.log(files);
-    }
-});
-
+    })
+    .catch(err => console.error(err));
+    
 console.log('ended');
