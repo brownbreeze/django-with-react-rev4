@@ -1,32 +1,35 @@
 import { Button } from 'antd';
 import './App.css';
 import React from 'react';
-// import 'antd/dist/react.css' # version 4 후부터 필요 없음
+
+const actions= {
+  init(initialValue){
+    return {value:initialValue}
+  },
+  increment(prevState){
+    return {value:prevState.value +1}
+
+  },
+  decrement(prevState){
+    return {value:prevState.value -1}
+  }
+};
 
 class Counter1 extends React.Component{ 
-  state = {
-    value:this.props.initialValue,
-  }
-  onClick = () =>{
-    this.setState((prevState) => {
-      const {value} = prevState;
-      return { value: value+1};
-    });
-    this.setState((prevState) => {
-      const {value} = prevState;
-      return { value: value+1};
-    });
-    this.setState((prevState) => {
-      const {value} = prevState;
-      return { value: value+1};
-    });
-  }
+  state = actions.init(this.props.initialValue);
+  // constructor(props){
+  //   super(props);
+  //   this.state = actions.init(this.props.initialValue);
+  // }
+
   render() {
     const {value} = this.state; // 현재의 상태값을 참조
     return (
       <div>
         Counter 1: {value}
-        <Button onClick={this.onClick}>+1</Button>
+        <Button onClick={() => this.setState(actions.increment)}>+1</Button>
+        <Button onClick={() => this.setState(actions.decrement)}>-1</Button>
+        {/* <Button onClick={actions.decrement}>-1</Button> */}
       </div>
     )
   }
@@ -56,4 +59,4 @@ export default App;
 //상탯값 : state = UI(엘리먼트)로의 반영을 위해 유지해야할 값들의 묶음
 // -> 상챗값은 변경하면 안됨
 // -> this.state.~~ = ?? (X) , this.setState();
-// -> setState() 비동기로 동작
+// -> setState() 비동기로 동작, 
