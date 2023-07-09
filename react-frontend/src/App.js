@@ -7,16 +7,23 @@ class Counter1 extends React.Component{
   state = {
     value:this.props.initialValue,
   }
+  onClick = () =>{
+    const {value} = this.state;
+    this.setState({value:value+1});
+  }
   render() {
     const {value} = this.state; // 현재의 상태값을 참조
-    return <div>Counter1: {value}</div>; // jsx문법
+    return (
+      <div>
+        Counter 1: {value}
+        <Button onClick={this.onClick}>+1</Button>
+      </div>
+    )
   }
 }
 function App() {
   return (
     <div>
-      <Counter1 initialValue={10}></Counter1>
-      <Counter1 initialValue={10}></Counter1>
       <Counter1 initialValue={10}></Counter1>
     </div>
   );
