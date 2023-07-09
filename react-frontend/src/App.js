@@ -1,11 +1,23 @@
 import { Button } from 'antd';
 import './App.css';
+import React from 'react';
 // import 'antd/dist/react.css' # version 4 후부터 필요 없음
 
+class Counter1 extends React.Component{ 
+  state = {
+    value:this.props.initialValue,
+  }
+  render() {
+    const {value} = this.state; // 현재의 상태값을 참조
+    return <div>Counter1: {value}</div>; // jsx문법
+  }
+}
 function App() {
   return (
-    <div className="App">
-      <Button type="primary" onClick={()=>console.log('clicked')}>hello buttn</Button>
+    <div>
+      <Counter1 initialValue={10}></Counter1>
+      <Counter1 initialValue={10}></Counter1>
+      <Counter1 initialValue={10}></Counter1>
     </div>
   );
 }
