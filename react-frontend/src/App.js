@@ -8,8 +8,18 @@ class Counter1 extends React.Component{
     value:this.props.initialValue,
   }
   onClick = () =>{
-    const {value} = this.state;
-    this.setState({value:value+1});
+    this.setState((prevState) => {
+      const {value} = prevState;
+      return { value: value+1};
+    });
+    this.setState((prevState) => {
+      const {value} = prevState;
+      return { value: value+1};
+    });
+    this.setState((prevState) => {
+      const {value} = prevState;
+      return { value: value+1};
+    });
   }
   render() {
     const {value} = this.state; // 현재의 상태값을 참조
@@ -21,30 +31,11 @@ class Counter1 extends React.Component{
     )
   }
 }
-class FruitComponent extends React.Component {
-  render(){
-    return (
-      <div>
-        <h1>좋아하는 과일</h1>
-        <ul>
-          {
-            this.props.fruits.map((name, idx) =>(
-              <li key={idx}>{name}</li>
-              // 순회할 경우 key가 꼭 있어야함.
-            ))
-          }
-        </ul>
-      </div>
-    )
-  }
-}
 
 function App() {
-  const fruits = ['바나나', '사과', '딸기'];
   return (
     <div>
       <Counter1 unter1 initialValue={10}></Counter1>
-      <FruitComponent fruits={fruits} />
     </div>
   );
 } 
@@ -61,3 +52,8 @@ export default App;
 // const reactElement1 = <h1>hello react</h1>
 // js 
 // const reactElement2 = React.createElement('h1', null, 'hello react');
+
+//상탯값 : state = UI(엘리먼트)로의 반영을 위해 유지해야할 값들의 묶음
+// -> 상챗값은 변경하면 안됨
+// -> this.state.~~ = ?? (X) , this.setState();
+// -> setState() 비동기로 동작
