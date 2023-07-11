@@ -1,65 +1,12 @@
-import { Button } from 'antd';
 import './App.css';
+import Counter from './Counter';
 import React from 'react';
 
-class PostDetail extends React.Component {
-  state = {
-    postDetail : null,
-  }
-
-  componentDidMount(){
-    const {postId} = this.props;
-    this.requestPost(postId);
-  }
-  componentDidUpdate(prevProps){
-    const {postId} = this.props;
-    if (postId!== prevProps.postId){
-      this.requestPost(postId);
-    }
-
-  }
-  requestPost(postId){
-    console.log(`-> #${postId}`);
-    this.setState({
-      postDetail : null
-    });
-    setTimeout(()=>{
-      this.setState({
-        postDetail: `로딩된 ${postId}`
-      })
-    }, 3000);
-    //axios (http client) => this.setStatus
-  }
-
-  render() {
-    const {postId} = this.props;
-    const {postDetail} = this.state;
-    return (
-      <div>
-        포스팅 #{postId}
-        <hr />
-        {!postDetail && "로딩 중 ..."}
-        {postDetail}
-      </div>
-
-    )
-  }
-}
 
 class App extends React.Component {
-
-
-  state = {
-    postId:10
-  }
   render() {
     return (
-      <div>
-        <PostDetail postId={this.state.postId}/>
-        <button onClick={()=>this.setState({postId:20})}>
-          postId변경
-        </button>
-      </div>
+      <Counter onClick={()=> console.log('clicked')}></Counter>
     );  
   }
 } 
