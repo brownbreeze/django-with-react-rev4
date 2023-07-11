@@ -4,9 +4,23 @@ import React from 'react';
 
 
 class App extends React.Component {
+  state = {myquery:'', language:''};
+
+  onChange = (e) => {
+    const {name, value} = e.target;
+    this.setState({
+      [name]:value,
+    })
+  }
   render() {
     return (
+    <React.Fragment>
       <Counter onClick={()=> console.log('clicked')}></Counter>
+      <input name="myquery" onChange={this.onChange}/>
+      <input name="language" onChange={this.onChange}/>
+      <hr/>
+      {JSON.stringify(this.state)}
+    </React.Fragment>
     );  
   }
 } 
