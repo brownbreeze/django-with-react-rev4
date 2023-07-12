@@ -21,7 +21,7 @@ class Counter extends React.Component {
         this.setState(({value : prevValue}) => ({
             value : (prevValue > 1 ? prevValue - 1 : 0)
         }))
-    }
+    } 
 
     render( ){
         const { color, value } = this.state;
