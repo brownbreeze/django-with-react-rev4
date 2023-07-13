@@ -1,6 +1,6 @@
 import React from "react";
 
-import { List } from 'antd';
+import { List, Input } from 'antd';
 // class TodoItem extends React.Component{
 //     render(){
 //         const {todo } = this.props;
@@ -10,7 +10,7 @@ import { List } from 'antd';
 //     }
 // }
 
-const TodoItem = ({todo}) => <li>{todo}</li>;
+// const TodoItem = ({todo}) => <li>{todo}</li>;
 
 class TodoList extends React.Component{
     state = {
@@ -24,23 +24,42 @@ class TodoList extends React.Component{
             current:value,
         });
         console.log(value);
-    }
-    onKeyDown = (e) =>{
+    };
+    onKeyDown = (e) => {
         if (e.keyCode === 13) {
+            // enter key 13
             const {todoList, current} = this.state;
             if (current.trim().length > 0){
                 this.setState({
                     current : '',
-                    todoLIst : [...todoList, current],    
+                    todoList : [...todoList, current.trim()],    
                 })    
             }
-            // enter key 13
         }
-    }
+    };
     render(){
         return (
-            <div>
-                <ul>
+            <div style={{width:'300px', margin:'30px auto'}}>
+                <List 
+                    header={"todo list"}
+                    dataSource={this.state.todoList}
+                    bordered={true}
+                    renderItem={todo =>(
+                        <List.Item>
+                            {todo}
+                        </List.Item>
+                    )}
+                    style={{
+                        marginBottom:'4px'
+                    }}
+                />
+                <Input 
+                    type="text" 
+                    value={this.state.current}
+                    placeholder={"할일을 입력해주세요"}
+                    onChange={this.onChange}
+                    onKeyDown={this.onKeyDown}/>
+                {/* <ul>
                     {this.state.todoList.map((todo, index)=>
                         <TodoItem key={index} todo={todo}/>
                     )}
@@ -50,7 +69,7 @@ class TodoList extends React.Component{
                     onChange={this.onChange} onKeyDown={this.onKeyDown}/>
                 <button>submit</button>
                 <hr/>
-                {JSON.stringify(this.state)}
+                {JSON.stringify(this.state)} */}
             </div>
         )
     }
