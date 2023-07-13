@@ -1,5 +1,5 @@
 import React from "react";
-
+import {produce}  from 'immer';
 import { List, Input } from 'antd';
 // class TodoItem extends React.Component{
 //     render(){
@@ -27,14 +27,23 @@ class TodoList extends React.Component{
     };
     onKeyDown = (e) => {
         if (e.keyCode === 13) {
-            // enter key 13
-            const {todoList, current} = this.state;
-            if (current.trim().length > 0){
-                this.setState({
-                    current : '',
-                    todoList : [...todoList, current.trim()],    
+            this.setState(
+                produce( this.state, draft =>{
+                    const current = draft.current.trim();
+                    if (current.length > 0){
+                        draft.current = '';
+                        draft.todoList.push(current);
+                    }
                 })    
-            }
+            );
+            // enter key 13
+            // const {todoList, current} = this.state;
+            // if (current.trim().length > 0){
+            //     this.setState({
+            //         current : '',
+            //         todoList : [...todoList, current.trim()],    
+            //     })    
+            // }
         }
     };
     render(){
