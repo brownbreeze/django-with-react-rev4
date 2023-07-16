@@ -1,6 +1,8 @@
 import React from "react";
 import Axios from "axios";
 import episodeApi from "./EpisodeApi";
+import {Card} from "antd";
+
 class EpisodeDetail extends React.Component {
     state = {
         episode : this.props.episode,
@@ -11,11 +13,14 @@ class EpisodeDetail extends React.Component {
         // 이미지가 없음
         // const { episode : {id, name, image:{ medium: thumbUrl}}} = this.state;
         return (
-            <div>
-                {id}: {name}, {image}
+            <Card 
+                style={{width:240}}
+                cover={null}>
+                <Card.Meta title={name}/>
                 {/* 이미지가 없음 */}
                 {/* <img src={thumbUrl} alt={name}/> */}
-            </div>
+
+            </Card>
         );
     }
 }
