@@ -1,11 +1,29 @@
 import React from "react";
 import Axios from "axios";
 
+class EpisodeDetail extends React.Component {
+    state = {
+        episode : this.props.episode,
+    }
+
+    render(){
+        const { episode: { id, name, image } } = this.state;
+        // 이미지가 없음
+        // const { episode : {id, name, image:{ medium: thumbUrl}}} = this.state;
+        return (
+            <div>
+                {id}: {name}, {image}
+                {/* 이미지가 없음 */}
+                {/* <img src={thumbUrl} alt={name}/> */}
+            </div>
+        );
+    }
+}
 class EpisodeList extends React.Component {
     state = {
         episodeList: [],
     }
-
+    // component가 생길때 딱! 
     async componentDidMount() {
         const apiURL = 'http://api.tvmaze.com/singlesearch/shows';
         const params = {
@@ -16,7 +34,7 @@ class EpisodeList extends React.Component {
             const response = await Axios.get(apiURL, {params});
             const { data : {_embedded : {episodes }} } = response;
                 // data._embedded.episodes; 
-                // console.log(episodes);
+            console.log(episodes);
             this.setState({
                 episodeList : episodes
             });
@@ -32,7 +50,11 @@ class EpisodeList extends React.Component {
         return ( 
             <div>
                 <h1>EpisodeList</h1>
-                {JSON.stringify(episodeList)}
+                {
+                    episodeList.map(episode =>
+                        <EpisodeDetail episode={episode}/>         
+                    )
+                }
             </div>
         );
     }
