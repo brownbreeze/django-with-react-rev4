@@ -1,6 +1,6 @@
 import React from "react";
 import Axios from "axios";
-
+import episodeApi from "./EpisodeApi";
 class EpisodeDetail extends React.Component {
     state = {
         episode : this.props.episode,
@@ -25,13 +25,13 @@ class EpisodeList extends React.Component {
     }
     // component가 생길때 딱! 
     async componentDidMount() {
-        const apiURL = 'http://api.tvmaze.com/singlesearch/shows';
+        const apiURL = '/singlesearch/shows';
         const params = {
             q:'earth',
             embed : 'episodes',
         };
         try {
-            const response = await Axios.get(apiURL, {params});
+            const response = await episodeApi.get(apiURL, {params});
             const { data : {_embedded : {episodes }} } = response;
                 // data._embedded.episodes; 
             console.log(episodes);

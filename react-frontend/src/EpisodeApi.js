@@ -2,7 +2,7 @@ import Axios from "axios";
 
 
 const instance = Axios.create({
-    baseURL:'http://www.naver.com',
+    baseURL:'http://api.tvmaze.com',
     timeout:3000,
     // headers:{},EpisodeApi.js 
 })
