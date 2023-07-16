@@ -1,7 +1,7 @@
 import React from "react";
 import Axios from "axios";
 import episodeApi from "./EpisodeApi";
-import {Card} from "antd";
+import { Card, Col, Row } from "antd";
 
 class EpisodeDetail extends React.Component {
     state = {
@@ -55,11 +55,15 @@ class EpisodeList extends React.Component {
         return ( 
             <div>
                 <h1>EpisodeList</h1>
+                <Row>
                 {
                     episodeList.map(episode =>
-                        <EpisodeDetail episode={episode}/>         
+                        <Col span={8}>
+                            <EpisodeDetail episode={episode}/>         
+                        </Col>
                     )
                 }
+                </Row>
             </div>
         );
     }
