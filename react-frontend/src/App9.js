@@ -1,5 +1,5 @@
 // import { App } from "antd";
-import React, { createContext, useState, useReducer } from "react" ;
+import React, { createContext, useState, useContext, useReducer } from "react" ;
 
 const INCREMENT = "COUNTER/INCREMENT";
 const DECREMENT = "COUNTER/DECREMENT";
@@ -7,13 +7,13 @@ const DECREMENT = "COUNTER/DECREMENT";
 const CounterContext = createContext();
 
 const reducer = (prevState, action) => {
-    const { type } = action;
+    const { type, payload: value = 1 } = action;
     if ( type === INCREMENT ){
-        return prevState +1;
+        return prevState + value ;
     } else {
-        return prevState -1;
+        return prevState - value;
     }
-    return 
+    return prevState;
 };
 
 const App9 = () => {
@@ -23,8 +23,8 @@ const App9 = () => {
 
     return(
         <div>
-            <h1 onClick={() => dispatch({type:DECREMENT})}>App9 {state}</h1>
-            <CounterContext.Provider value={{state, dispatch}}>
+            <h1 onClick={() => dispatch(actionDecrement())}>App9 {state}</h1>
+            <CounterContext.Provider value={{ state, dispatch }}>
                 <GameBox/>
             </CounterContext.Provider>
         </div>
@@ -32,8 +32,8 @@ const App9 = () => {
 
 };
 
-const actionIncrement = () => ({ type:INCREMENT });
-const actionDecrement = () => ({ type:DECREMENT});
+const actionIncrement = (value) => ({ payload: value, type:INCREMENT });
+const actionDecrement = (value) => ({ payload: value, type:DECREMENT});
 
 
 const GameBox = () => {
